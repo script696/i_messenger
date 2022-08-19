@@ -1,10 +1,10 @@
 import React from 'react'
-import './Messenger.module.scss'
+import s from './Messenger.module.scss'
 
 
 const Messenger = () => {
   return (
-    <div>Messenger</div>
+    <div className={s.messenger}>Messenger</div>
   )
 }
 
