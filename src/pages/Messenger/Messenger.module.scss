@@ -1,3 +1,13 @@
-.messenger{
-  color: red;
+.messenger {
+  height: 603px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 58px;
+
+  &__messege {
+    align-self: flex-end;
+  }
 }

@@ -1,0 +1,53 @@
+.msgCard {
+  box-sizing: border-box;
+  height: 64px;
+  display: flex;
+  &__content {
+    width: 201px;
+    padding: 5px 15px;
+    display: flex;
+    flex-direction: column;
+    background: url("../../../assets/img/userMsgBack.png") center / contain
+      no-repeat;
+  }
+  &__name {
+    font-size: 10px;
+    line-height: 12px;
+    color: rgba(0, 0, 0, 0.4);
+    margin: 0 0 8px 0;
+  }
+  &__text {
+    font-size: 15px;
+    line-height: 18px;
+    color: rgba(0, 0, 0, 0.4);
+    margin: 0 0 3px 0;
+  }
+  &__time {
+    margin: 0;
+    font-size: 10px;
+    line-height: 12px;
+    color: rgba(0, 0, 0, 0.29);
+    text-align: right;
+  }
+  &__logoWrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  &__logo {
+    width: 34px;
+    height: 34px;
+    background: url("../../../assets/img/userMsgLogo.png") center / cover
+      no-repeat;
+  }
+}
+
+.msgCard_style_bot .msgCard__content {
+  background: url("../../../assets/img/botMsgBack.png") center / contain
+    no-repeat;
+}
+
+.msgCard_style_bot .msgCard__logo {
+  background: url("../../../assets/img/botMsgLogo.png") center / cover no-repeat;
+}
