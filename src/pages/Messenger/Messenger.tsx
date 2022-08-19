@@ -5,7 +5,8 @@ import MsgCard from "./components/MsgCard";
 
 const Messenger = () => {
   interface IfakeData {
-    _userId: string;
+    _msgUniqueId: string;
+    _ownerId: string;
     userName: string;
     textMsg: string;
     timeSent: string;
@@ -30,12 +31,18 @@ const Messenger = () => {
     response();
   }, []);
 
+
+
   return (
     <ul className={s.messenger}>
-      <li className={s.messenger__messege}><MsgCard/></li>
-      <li className={s.messenger__messege}></li>
-      <li className={s.messenger__messege}></li>
-      <li className={s.messenger__messege}></li>
+      {msgData?.map((msg) => {
+        
+        return (
+          <li key={msg._msgUniqueId} className={s.messenger__messege}>
+            <MsgCard msgData={msg} userId={userData}/>
+          </li>
+        );
+      })}
     </ul>
   );
 };
