@@ -2,9 +2,12 @@
   box-sizing: border-box;
   height: 64px;
   display: flex;
+  justify-self: end;
+
   &__content {
     width: 201px;
-    padding: 5px 15px;
+    padding: 7px 16px;
+    position: relative;
     display: flex;
     flex-direction: column;
     background: url("../../../assets/img/userMsgBack.png") center / contain
@@ -14,7 +17,7 @@
     font-size: 10px;
     line-height: 12px;
     color: rgba(0, 0, 0, 0.4);
-    margin: 0 0 8px 0;
+    margin: 0 0 2px 0;
   }
   &__text {
     font-size: 15px;
@@ -23,6 +26,9 @@
     margin: 0 0 3px 0;
   }
   &__time {
+    position: absolute;
+    bottom: 2px;
+    right: 16px;
     margin: 0;
     font-size: 10px;
     line-height: 12px;
@@ -41,6 +47,10 @@
     background: url("../../../assets/img/userMsgLogo.png") center / cover
       no-repeat;
   }
+}
+
+.msgCard_style_bot {
+  justify-self: start;
 }
 
 .msgCard_style_bot .msgCard__content {

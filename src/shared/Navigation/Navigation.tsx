@@ -16,7 +16,6 @@ const Navigation = () => {
 
   const location = useLocation();
 
-  console.log(isMenuOpen);
 
   return (
     <nav className={s.navigation}>

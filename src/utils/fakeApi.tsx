@@ -1,5 +1,6 @@
 interface IfakeData {
-  _userId: string;
+  _msgUniqueId: string;
+  _ownerId: string;
   userName: string;
   textMsg: string;
   timeSent: string;
@@ -10,25 +11,29 @@ interface IfakeData2 {
 
 const fakeMsgData: Array<IfakeData> = [
   {
-    _userId: "000000",
+    _msgUniqueId: '12DF124asf',
+    _ownerId: "000000",
     userName: "Евгений",
     textMsg: "Хочу программировать",
     timeSent: "15:55",
   },
   {
-    _userId: "111111",
+    _msgUniqueId: '22DF124asf',
+    _ownerId: "111111",
     userName: "Чат-бот",
     textMsg: "Попробуй python",
     timeSent: "15:55",
   },
   {
-    _userId: "000000",
+    _msgUniqueId: '32DF124asf',
+    _ownerId: "000000",
     userName: "Евгений",
     textMsg: "Спасибо за ответ",
     timeSent: "15:55",
   },
   {
-    _userId: "111111",
+    _msgUniqueId: '42DF124asf',
+    _ownerId: "111111",
     userName: "Чат-бот",
     textMsg: "Был рад помочь, обращайся",
     timeSent: "15:55",
@@ -45,14 +50,14 @@ const getMsgData = (): Promise<any> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(fakeMsgData);
-    }, 2000);
+    }, 1000);
   });
 };
 const getUserData = (): Promise<any> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(fakeUserData);
-    }, 2000);
+    }, 1000);
   });
 };
 
