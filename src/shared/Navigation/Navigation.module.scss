@@ -1,0 +1,59 @@
+.navigation {
+  position: absolute;
+  z-index: 1;
+  top: 65px;
+  left: 0;
+  height: 285px;
+  width: 96px;
+  transform: translateX(-90%);
+
+  &__navigationItems {
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    &_close{
+      display: none;
+    }
+  }
+
+  &__navigationItem {
+    height: 25%;
+    width: 100%;
+    background: #d7dae2;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  &__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    &_active {
+      background: #171c37;
+    }
+  }
+
+  &__closeBtn {
+    border: none;
+    padding: 0;
+    position: absolute;
+    top: 0%;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    transform: translate(-3px, -85%);
+    border-radius: 10px;
+    background: #4089f6 url('../../assets/icons/chevron.svg') center / 11px 18px no-repeat;
+    display: flex;
+    z-index: 1;
+    cursor: pointer;
+  }
+}
