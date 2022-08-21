@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Bell from "./pages/Bell/Bell";
 import Messenger from "./pages/Messenger/Messenger";
 import Operator from "./pages/Operator/Operator";
@@ -16,6 +16,9 @@ function App() {
           <Route path="/question" exact component={Question} />
           <Route path="/bell" exact component={Bell} />
           <Route path="/operator" exact component={Operator} />
+          <Route path="/" exact>
+            <Redirect to="/messenger" />
+          </Route>
         </Switch>
       </Phone>
     </div>
