@@ -1,8 +1,8 @@
 .msgCard {
   box-sizing: border-box;
-  height: 64px;
   display: flex;
   justify-self: end;
+  gap: 10px;
 
   &__content {
     width: 201px;
@@ -10,8 +10,31 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background: url("../../../../assets/img/userMsgBack.png") center / contain
-      no-repeat;
+    background: #eaf3fa;
+    overflow-wrap: break-word;
+    border-radius: 15px 15px 15px 15px;
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      bottom: 0;
+      width: 20px;
+      height: 20px;
+      transform: translateX(calc(-100% - 7px));
+      background: #eaf3fa;
+      clip-path: polygon(
+        52% 11%,
+        52% 0,
+        100% 0,
+        100% 70%,
+        100% 100%,
+        53% 100%,
+        0 100%,
+        29% 74%,
+        52% 52%,
+        52% 26%
+      );
+    }
   }
   &__name {
     font-size: 10px;
@@ -54,10 +77,10 @@
 }
 
 .msgCard_style_bot .msgCard__content {
-  background: url("../../../../assets/img/botMsgBack.png") center / contain
-    no-repeat;
+  background: #edeef2;
 }
 
 .msgCard_style_bot .msgCard__logo {
-  background: url("../../../../assets/img/botMsgLogo.png") center / cover no-repeat;
+  background: url("../../../../assets/img/botMsgLogo.png") center / cover
+    no-repeat;
 }

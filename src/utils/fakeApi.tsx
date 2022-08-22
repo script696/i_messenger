@@ -1,6 +1,6 @@
 interface IfakeData {
-  _msgUniqueId: string;
-  _ownerId: string;
+  msgUniqueId: string;
+  ownerId: string;
   userName: string;
   textMsg: string;
   timeSent: string;
@@ -11,29 +11,29 @@ interface IfakeData2 {
 
 const fakeMsgData: Array<IfakeData> = [
   {
-    _msgUniqueId: '12DF124asf',
-    _ownerId: "000000",
+    msgUniqueId: "12DF124asf",
+    ownerId: "000000",
     userName: "Евгений",
     textMsg: "Хочу программировать",
     timeSent: "15:55",
   },
   {
-    _msgUniqueId: '22DF124asf',
-    _ownerId: "111111",
+    msgUniqueId: "22DF124asf",
+    ownerId: "111111",
     userName: "Чат-бот",
     textMsg: "Попробуй python",
     timeSent: "15:55",
   },
   {
-    _msgUniqueId: '32DF124asf',
-    _ownerId: "000000",
+    msgUniqueId: "32DF124asf",
+    ownerId: "000000",
     userName: "Евгений",
     textMsg: "Спасибо за ответ",
     timeSent: "15:55",
   },
   {
-    _msgUniqueId: '42DF124asf',
-    _ownerId: "111111",
+    msgUniqueId: "42DF124asf",
+    ownerId: "111111",
     userName: "Чат-бот",
     textMsg: "Был рад помочь, обращайся",
     timeSent: "15:55",
@@ -61,4 +61,19 @@ const getUserData = (): Promise<any> => {
   });
 };
 
-export { getMsgData, getUserData };
+const sendMsg = (msgName: any, msgText: any) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      fakeMsgData.push({
+        msgUniqueId: `${Math.random()}`,
+        ownerId: "000000",
+        userName: msgName,
+        textMsg: msgText,
+        timeSent: "15:55",
+      });
+      resolve(fakeMsgData);
+    }, 1000);
+  });
+};
+
+export { getMsgData, getUserData, sendMsg };

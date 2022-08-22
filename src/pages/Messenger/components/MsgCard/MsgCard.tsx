@@ -3,7 +3,7 @@ import s from "./MsgCard.module.scss";
 
 interface IMsgCard {
   msgData: {
-    _ownerId: string;
+    ownerId: string;
     userName: string;
     textMsg: string;
     timeSent: string;
@@ -16,11 +16,11 @@ interface IMsgCard {
 }
 
 const MsgCard = ({
-  msgData: { _ownerId, userName, textMsg, timeSent, }, userId
+  msgData: { ownerId, userName, textMsg, timeSent, }, userId
 }: any) => {
 
 
-  const isUserMsg = _ownerId === userId[0]._userId
+  const isUserMsg = ownerId === userId[0]._userId
   
   return (
     <article className={`${s.msgCard} ${!isUserMsg ? s.msgCard_style_bot : null} }`}>
