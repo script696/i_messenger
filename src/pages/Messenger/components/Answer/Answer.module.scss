@@ -1,6 +1,6 @@
 .answer {
   position: relative;
-  display: none;
+  background: transparent;
   &__filterBar {
     margin: 0 0 20px 0;
     box-sizing: border-box;
@@ -36,6 +36,7 @@
     background: none;
   }
   &__content {
+    display: none;
     margin: 0 0 15px 0;
     padding: 0 7px;
   }

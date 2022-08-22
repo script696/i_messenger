@@ -2,8 +2,9 @@ interface IfakeData {
   msgUniqueId: string;
   ownerId: string;
   userName: string;
-  textMsg: string;
+  textMsg: Array<string>;
   timeSent: string;
+  filters: Object;
 }
 interface IfakeData2 {
   _userId: string;
@@ -14,29 +15,57 @@ const fakeMsgData: Array<IfakeData> = [
     msgUniqueId: "12DF124asf",
     ownerId: "000000",
     userName: "Евгений",
-    textMsg: "Хочу программировать",
+    textMsg: ["Хочу программировать"],
     timeSent: "15:55",
+    filters: {
+      isBold: false,
+      isItalic: false,
+      isUnderline: false,
+      isNumList: false,
+      isBulletsList: false,
+    },
   },
   {
     msgUniqueId: "22DF124asf",
     ownerId: "111111",
     userName: "Чат-бот",
-    textMsg: "Попробуй python",
+    textMsg: ["Попробуй python"],
     timeSent: "15:55",
+    filters: {
+      isBold: false,
+      isItalic: false,
+      isUnderline: false,
+      isNumList: false,
+      isBulletsList: false,
+    },
   },
   {
     msgUniqueId: "32DF124asf",
     ownerId: "000000",
     userName: "Евгений",
-    textMsg: "Спасибо за ответ",
+    textMsg: ["Спасибо за ответ"],
     timeSent: "15:55",
+    filters: {
+      isBold: false,
+      isItalic: false,
+      isUnderline: false,
+      isNumList: false,
+      isBulletsList: false,
+    },
   },
   {
     msgUniqueId: "42DF124asf",
     ownerId: "111111",
     userName: "Чат-бот",
-    textMsg: "Был рад помочь, обращайся",
+    textMsg: ["Был рад помочь, обращайся!!!"],
     timeSent: "15:55",
+    filters: {
+      isBold: false,
+      isItalic: false,
+      isUnderline: false,
+      isNumList: false,
+      isBulletsList: false,
+    },
   },
 ];
 
@@ -61,7 +90,15 @@ const getUserData = (): Promise<any> => {
   });
 };
 
-const sendMsg = (msgName: any, msgText: any) => {
+const sendMsg = (
+  msgName: any,
+  msgText: any,
+  isBold: any,
+  isItalic: any,
+  isUnderline: any,
+  isNumList: any,
+  isBulletsList: any,
+) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       fakeMsgData.push({
@@ -70,6 +107,13 @@ const sendMsg = (msgName: any, msgText: any) => {
         userName: msgName,
         textMsg: msgText,
         timeSent: "15:55",
+        filters: {
+          isBold: isBold,
+          isItalic: isItalic,
+          isUnderline: isUnderline,
+          isNumList: isNumList,
+          isBulletsList: isBulletsList,
+        },
       });
       resolve(fakeMsgData);
     }, 1000);

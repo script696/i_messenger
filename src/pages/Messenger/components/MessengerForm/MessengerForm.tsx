@@ -1,48 +1,55 @@
-import { stringify } from "querystring";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect,} from "react";
 import s from "./MessengerForm.module.scss";
+import MessengesContext from "../../../../context/MessengesContext";
 
 const MessengerForm = ({ onSubmit }: any) => {
-  const [formData, setFormData] = useState({
-    msgName: "",
-    msgText: "",
-  });
 
-  const fillInputValue = (e: any) => {
-    const currentInput = e.target.id;
-    const currentValue = e.target.value;
+  const {state, dispatch} = useContext(MessengesContext)
 
-    setFormData((prev) => ({ ...prev, [currentInput]: currentValue }));
-  };
+  const textareaClasses = [
+    s.msgForm__textArea,
+    state.filters.isBold ? s.msgForm__textArea_style_bold : null,
+    state.filters.isItalic ? s.msgForm__textArea_style_italic : null,
+    state.filters.isUnderline ? s.msgForm__textArea_style_underline : null,
+  ]
 
-  const resetInputs = () => {
-    setFormData(() => ({ msgName: "", msgText: "" }));
-  };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    const { msgName, msgText } = formData;
+    const { name, text } = state;
 
-    onSubmit(msgName, msgText, resetInputs);
+    onSubmit(name, text,);
   };
+ 
 
   return (
     <form className={s.msgForm} onSubmit={handleSubmit}>
       <input
-        value={formData.msgName}
-        id="msgName"
+        value={state.name}
+        id="msgOwnerName"
         className={s.msgForm__input}
         type="text"
         placeholder="Имя"
-        onChange={fillInputValue}
+        onChange={(e) =>
+          dispatch({
+            type: "fillName",
+            payload: { key: "name", value: e.target.value },
+          })
+        }
       />
       <textarea
-        value={formData.msgText}
+        value={state.text}
         id="msgText"
-        className={s.msgForm__textArea}
+        className={textareaClasses.join(' ')}
+        // className={s.msgForm__textArea}
         placeholder="Сообщение"
-        onChange={fillInputValue}
+        onChange={(e) =>
+          dispatch({
+            type: "fillText",
+            payload: { key: "text", value: e.target.value },
+          })
+        }
       />
       <button className={s.msgForm__submitBtn} type="submit"></button>
     </form>
