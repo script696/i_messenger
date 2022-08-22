@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import s from "./Messenger.module.scss";
 import { getMsgData, getUserData } from "../../utils/fakeApi";
-import MsgCard from "./components/MsgCard";
+import MsgCard from "./components/MsgCard/MsgCard";
+import MessengerForm from "./components/MessengerForm/MessengerForm";
+import Answer from "./components/Answer/Answer";
 
 const Messenger = () => {
   interface IfakeData {
@@ -31,19 +33,22 @@ const Messenger = () => {
     response();
   }, []);
 
-
-
   return (
-    <ul className={s.messenger}>
-      {msgData?.map((msg) => {
-        
-        return (
-          <li key={msg._msgUniqueId} className={s.messenger__messege}>
-            <MsgCard msgData={msg} userId={userData}/>
-          </li>
-        );
-      })}
-    </ul>
+    <div className={s.messenger}>
+      <ul className={s.messenger__list}>
+        {msgData?.map((msg) => {
+          return (
+            <li key={msg._msgUniqueId} className={s.messenger__messege}>
+              <MsgCard msgData={msg} userId={userData} />
+            </li>
+          );
+        })}
+      </ul>
+      <section className={s.messenger__bottom}>
+        <Answer/>
+        <MessengerForm />
+      </section>
+    </div>
   );
 };
 
