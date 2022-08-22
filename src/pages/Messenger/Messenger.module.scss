@@ -2,13 +2,15 @@
   position: relative;
   height: 100%;
   &__list {
-    height: 603px;
+    height: 555px;
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
     gap: 58px;
+    overflow-y: auto;
+    overflow-x: scroll;
   }
 
   &__messege {
@@ -20,4 +22,8 @@
     left: 0;
     width: 100%;
   }
+
+
 }
+
+

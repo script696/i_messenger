@@ -18,16 +18,26 @@
   &__textArea {
     box-sizing: border-box;
     padding: 8px;
-    border: 0;
     height: 136px;
     background: #eeeff3;
     border-radius: 8px;
     &::placeholder {
-      font-size: 15px;
-      line-height: 120px;
+      font-size: 15px !important;
+      line-height: 120px !important;
+      font-weight: 400 !important;
+      text-decoration: none ;
       align-items: center;
       text-align: center;
       color: rgba(0, 0, 0, 0.4);
+    }
+    &_style_bold{
+      font-weight: 700;
+    }
+    &_style_italic{
+      font-style: italic;
+    }
+    &_style_underline{
+      text-decoration: underline;
     }
   }
   &__submitBtn {
@@ -43,3 +53,11 @@
   }
 
 }
+.testBtn {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  }
