@@ -36,7 +36,7 @@ const MsgCard = ({
   ];
 
 
-useEffect(()=>{console.log(filters)},[filters])
+// useEffect(()=>{console.log(filters)},[filters])
   return (
     <article
       className={`${s.msgCard} ${!isUserMsg ? s.msgCard_style_bot : null} }`}

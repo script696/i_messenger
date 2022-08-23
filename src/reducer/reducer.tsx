@@ -3,7 +3,7 @@ const initialState = {
   msgUniqueId: "32DF124asf",
   ownerId: "000000",
   name: "",
-  text: [],
+  text: "",
   timeSent: "15:55",
   filters: {
     isBold: false,
@@ -41,13 +41,32 @@ const reducer = (state: any, action: any) => {
         ...state,
         filters: { ...state.filters, isUnderline: action.payload },
       };
-    case "list-num":
-      const test = state.text.split("\n");
-      console.log(test);
-      return {
-        ...state,
-        filters: { ...state.filters, isNumList: action.payload },
-      };
+    case "list":
+      const isNumeric = action.payload.key === "numeric";
+
+      if (!state.filters.isNumList) {
+        const arrOfChunks = state.text.split("\n");
+        const numberChunks = arrOfChunks.map(
+          (val: any, index: any) =>
+            `${isNumeric ? index + 1 : "\u2022"}. ${val}`
+        );
+        const newNumberListString = numberChunks.join("\n");
+        return {
+          ...state,
+          text: newNumberListString,
+          filters: { ...state.filters, isNumList: action.payload.value },
+        };
+      } else {
+        const arrOfChunks = state.text.split("\n");
+        const numberChunks = arrOfChunks.map((val: any) => val.slice(3));
+        const newNumberListString = numberChunks.join("\n");
+        return {
+          ...state,
+          text: newNumberListString,
+          filters: { ...state.filters, isNumList: action.payload.value },
+        };
+      }
+
     case "resetFilters":
       return {
         ...state,
@@ -57,11 +76,4 @@ const reducer = (state: any, action: any) => {
       return state;
   }
 };
-
 export { reducer, initialState };
-
-// case "bold":
-
-//       const test = state.text.split('\n')
-//       console.log(test);
-//       return state;

@@ -12,7 +12,7 @@
     flex-direction: column;
     background: #eaf3fa;
     overflow-wrap: break-word;
-    // white-space: pre;
+    white-space: pre-wrap;
     border-radius: 15px 15px 15px 15px;
     &::before {
       content: "";

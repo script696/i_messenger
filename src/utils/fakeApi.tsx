@@ -2,7 +2,7 @@ interface IfakeData {
   msgUniqueId: string;
   ownerId: string;
   userName: string;
-  textMsg: Array<string>;
+  textMsg: string;
   timeSent: string;
   filters: Object;
 }
@@ -15,7 +15,7 @@ const fakeMsgData: Array<IfakeData> = [
     msgUniqueId: "12DF124asf",
     ownerId: "000000",
     userName: "Евгений",
-    textMsg: ["Хочу программировать"],
+    textMsg: "Хочу программировать",
     timeSent: "15:55",
     filters: {
       isBold: false,
@@ -29,7 +29,7 @@ const fakeMsgData: Array<IfakeData> = [
     msgUniqueId: "22DF124asf",
     ownerId: "111111",
     userName: "Чат-бот",
-    textMsg: ["Попробуй python"],
+    textMsg: "Попробуй python",
     timeSent: "15:55",
     filters: {
       isBold: false,
@@ -43,7 +43,7 @@ const fakeMsgData: Array<IfakeData> = [
     msgUniqueId: "32DF124asf",
     ownerId: "000000",
     userName: "Евгений",
-    textMsg: ["Спасибо за ответ"],
+    textMsg: "Спасибо за ответ",
     timeSent: "15:55",
     filters: {
       isBold: false,
@@ -57,7 +57,7 @@ const fakeMsgData: Array<IfakeData> = [
     msgUniqueId: "42DF124asf",
     ownerId: "111111",
     userName: "Чат-бот",
-    textMsg: ["Был рад помочь, обращайся!!!"],
+    textMsg: "Был рад помочь, обращайся!!!",
     timeSent: "15:55",
     filters: {
       isBold: false,

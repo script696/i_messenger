@@ -40,7 +40,7 @@ function App() {
     response();
   }, []);
 
-useEffect(()=> {console.log(state.filters)}, [state])
+// useEffect(()=> {console.log(state.filters)}, [state])
 
   const onSendMsg = (msgName: any, msgText: any): void => {
     const response = async () => {
