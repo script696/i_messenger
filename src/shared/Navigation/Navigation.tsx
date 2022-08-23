@@ -24,7 +24,6 @@ const Navigation = () => {
         className={`${s.navigation__navigationItems} ${
           isMenuOpen ? null : s.navigation__navigationItems_close
         }`}
-       
       >
         <li className={s.navigation__navigationItem}>
           <NavLink

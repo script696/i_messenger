@@ -23,13 +23,18 @@
   }
 
   &__navigationItem {
+    position: relative;
     height: 25%;
     width: 100%;
     background: #d7dae2;
     overflow: hidden;
     border-radius: 10px;
+    overflow: hidden;
     cursor: pointer;
+        
   }
+ 
+  
   &__link {
     display: flex;
     justify-content: center;

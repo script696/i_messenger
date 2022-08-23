@@ -1,18 +1,11 @@
-interface IfakeData {
-  msgUniqueId: string;
-  ownerId: string;
-  userName: string;
-  textMsg: string;
-  timeSent: string;
-  filters: Object;
-}
-interface IfakeData2 {
-  _userId: string;
-}
+import {
+  IuserFakeData,
+  ImsgFakeData,
+} from '../types/types'
 
-const fakeMsgData: Array<IfakeData> = [
+const fakeMsgData: Array<ImsgFakeData> = [
   {
-    msgUniqueId: "12DF124asf",
+    msgUniqueId: `${Math.random()}`,
     ownerId: "000000",
     userName: "Евгений",
     textMsg: "Хочу программировать",
@@ -26,7 +19,7 @@ const fakeMsgData: Array<IfakeData> = [
     },
   },
   {
-    msgUniqueId: "22DF124asf",
+    msgUniqueId: `${Math.random()}`,
     ownerId: "111111",
     userName: "Чат-бот",
     textMsg: "Попробуй python",
@@ -40,7 +33,7 @@ const fakeMsgData: Array<IfakeData> = [
     },
   },
   {
-    msgUniqueId: "32DF124asf",
+    msgUniqueId: `${Math.random()}`,
     ownerId: "000000",
     userName: "Евгений",
     textMsg: "Спасибо за ответ",
@@ -54,7 +47,7 @@ const fakeMsgData: Array<IfakeData> = [
     },
   },
   {
-    msgUniqueId: "42DF124asf",
+    msgUniqueId: `${Math.random()}`,
     ownerId: "111111",
     userName: "Чат-бот",
     textMsg: "Был рад помочь, обращайся!!!",
@@ -69,20 +62,18 @@ const fakeMsgData: Array<IfakeData> = [
   },
 ];
 
-const fakeUserData: Array<IfakeData2> = [
-  {
-    _userId: "000000",
-  },
-];
+const fakeUserData: IuserFakeData = {
+  userId: "000000",
+};
 
-const getMsgData = (): Promise<any> => {
+const getMsgData = (): Promise<Array<ImsgFakeData>> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(fakeMsgData);
     }, 1000);
   });
 };
-const getUserData = (): Promise<any> => {
+const getUserData = (): Promise<IuserFakeData> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(fakeUserData);
@@ -90,22 +81,24 @@ const getUserData = (): Promise<any> => {
   });
 };
 
-const sendMsg = (
-  msgName: any,
-  msgText: any,
-  isBold: any,
-  isItalic: any,
-  isUnderline: any,
-  isNumList: any,
-  isBulletsList: any,
-) => {
+const sendMsg = ({
+  userName,
+  textMsg,
+  filters: { isBold },
+  filters: { isItalic },
+  filters: { isUnderline },
+  filters: { isNumList },
+  filters: { isBulletsList },
+}: ImsgFakeData) : Promise<Array<ImsgFakeData>> => {
+  console.log(userName, textMsg);
+  
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       fakeMsgData.push({
         msgUniqueId: `${Math.random()}`,
         ownerId: "000000",
-        userName: msgName,
-        textMsg: msgText,
+        userName: userName,
+        textMsg: textMsg,
         timeSent: "15:55",
         filters: {
           isBold: isBold,
@@ -119,5 +112,6 @@ const sendMsg = (
     }, 1000);
   });
 };
+
 
 export { getMsgData, getUserData, sendMsg };
