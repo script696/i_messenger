@@ -2,6 +2,7 @@
   width: 435px;
   height: 977px;
   position: relative;
+  transform: scale(0.6);
 
   &::after {
     content: "";
@@ -22,7 +23,7 @@
     left: 9px;
     height: 896px;
     width: 414px;
-    padding: 71px 17px;
+    padding: 71px 17px 16px;
     background: #fff;
     border-radius: 15px;
   }
@@ -36,5 +37,33 @@
     font-size: 20px;
     line-height: 23px;
     color: #d7dae2;
+  }
+  &__flscrnBtn {
+    border: none;
+    background: none;
+    padding: 0;
+    position: absolute;
+    top: 21px;
+    right: 27px;
+    width: 30px;
+    height: 30px;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: 999;
+      width: 11px;
+      height: 11px;
+      background: url("../../assets/icons/angle.svg");
+    }
+    &::before{
+      top: 0;
+      right: 0;
+    }
+    &::after{
+      left: 0;
+      bottom: 0;
+      transform: rotate(180deg);
+    }
   }
 }

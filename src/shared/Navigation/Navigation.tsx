@@ -16,7 +16,6 @@ const Navigation = () => {
 
   const location = useLocation();
 
-  console.log(isMenuOpen);
 
   return (
     <nav className={s.navigation}>
@@ -25,7 +24,6 @@ const Navigation = () => {
         className={`${s.navigation__navigationItems} ${
           isMenuOpen ? null : s.navigation__navigationItems_close
         }`}
-       
       >
         <li className={s.navigation__navigationItem}>
           <NavLink
