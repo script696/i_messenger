@@ -55,14 +55,20 @@ const Answer = () => {
             className={s.answer__filterBtn} 
             name="list-num"
             onClick={() =>
-            dispatch({ type: "number-list", payload: !state.filters.isNumList })
+            dispatch({ type: "list", payload: {key: 'numeric', value : !state.filters.isNumList }})
             }
             >
               <GlobalSvgSelector id="number-list" />
             </button>
           </li>
           <li className={s.answer__filterBarItem}>
-            <button className={s.answer__filterBtn} name="list-bullets">
+            <button 
+            className={s.answer__filterBtn} 
+            name="list-bullets"
+            onClick={() =>
+              dispatch({ type: "list", payload: {key: 'bullets', value : !state.filters.isNumList }})
+              }
+            >
               <GlobalSvgSelector id="list-bullets" />
             </button>
           </li>
