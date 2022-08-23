@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Bell from "./pages/Bell/Bell";
 import Messenger from "./pages/Messenger/Messenger";
@@ -10,19 +10,21 @@ import { reducer, initialState } from "./reducer/reducer";
 import { getMsgData, getUserData, sendMsg } from "./utils/fakeApi";
 import "./styles/index.scss";
 
-function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+interface IfakeData {
+  msgUniqueId: string;
+  ownerId: string;
+  userName: string;
+  textMsg: string;
+  timeSent: string;
+}
+interface IfakeData2 {
+  _userId: string;
+}
 
-  interface IfakeData {
-    msgUniqueId: string;
-    ownerId: string;
-    userName: string;
-    textMsg: string;
-    timeSent: string;
-  }
-  interface IfakeData2 {
-    _userId: string;
-  }
+const App = ()=> {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const [isAnswerOpen, setIsAnswerOpen] = useState(false);
+  const msgListRef = useRef<any>(null);
 
   const [msgData, setMsgData] = useState<Array<IfakeData>>();
   const [userData, setUsergData] = useState<Array<IfakeData2>>();
@@ -35,12 +37,17 @@ function App() {
       ]);
 
       setMsgData((): Array<IfakeData> => [...msgDataRes]);
-      setUsergData((prev): any => [...userDataRes]);
+      setUsergData(() => [...userDataRes]);
     };
     response();
   }, []);
 
-// useEffect(()=> {console.log(state.filters)}, [state])
+
+  useEffect(()=>{
+    msgListRef!.current!.scrollTop = msgListRef!.current!.scrollHeight;
+
+  },[msgData])
+ 
 
   const onSendMsg = (msgName: any, msgText: any): void => {
     const response = async () => {
@@ -58,6 +65,7 @@ function App() {
       } catch (e) {
         console.log(e);
       } finally {
+        setIsAnswerOpen(prev => false)
         dispatch({
           type: "reset",
         });
@@ -68,7 +76,7 @@ function App() {
 
 
   return (
-    <MessengesContext.Provider value={{ state, dispatch }}>
+    <MessengesContext.Provider value={{ state, dispatch, isAnswerOpen, setIsAnswerOpen }}>
       <div className="container">
         <Phone>
           <Switch>
@@ -77,6 +85,7 @@ function App() {
                 msgData={msgData}
                 userData={userData}
                 onSendMsg={onSendMsg}
+                msgListRef={msgListRef}
               />
             </Route>
             <Route path="/question" exact component={Question} />

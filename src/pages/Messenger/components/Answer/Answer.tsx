@@ -3,8 +3,21 @@ import GlobalSvgSelector from "../../../../assets/icons/GlobalSvgSelector";
 import MessengesContext from "../../../../context/MessengesContext";
 import s from "./Answer.module.scss";
 
-const Answer = () => {
+interface IisAnswerOpen {
+  isAnswerOpen: boolean;
+  answerMsgData: {
+    name: string;
+    text: string;
+  };
+}
+
+const Answer = ({ isAnswerOpen, answerMsgData: {name, text} }: IisAnswerOpen) => {
   const { state, dispatch } = useContext(MessengesContext);
+
+const answerContentClasses = [
+  s.answer__content,
+  isAnswerOpen ? s.answer__content_open : null,
+]
 
   return (
     <div className={s.answer}>
@@ -14,7 +27,9 @@ const Answer = () => {
             <button
               className={s.answer__filterBtn}
               name="bold"
-              onClick={() => dispatch({ type: "bold", payload: !state.filters.isBold })}
+              onClick={() =>
+                dispatch({ type: "bold", payload: !state.filters.isBold })
+              }
             >
               <GlobalSvgSelector
                 id="bold"
@@ -38,10 +53,14 @@ const Answer = () => {
           </li>
           <li className={s.answer__filterBarItem}>
             <button
+              type="button"
               className={s.answer__filterBtn}
               name="underline"
               onClick={() =>
-                dispatch({ type: "underline", payload: !state.filters.isUnderline })
+                dispatch({
+                  type: "underline",
+                  payload: !state.filters.isUnderline,
+                })
               }
             >
               <GlobalSvgSelector
@@ -51,22 +70,30 @@ const Answer = () => {
             </button>
           </li>
           <li className={s.answer__filterBarItem}>
-            <button 
-            className={s.answer__filterBtn} 
-            name="list-num"
-            onClick={() =>
-            dispatch({ type: "list", payload: {key: 'numeric', value : !state.filters.isNumList }})
-            }
+            <button
+              type="button"
+              className={s.answer__filterBtn}
+              name="list-num"
+              onClick={() =>
+                dispatch({
+                  type: "list",
+                  payload: { key: "numeric", value: !state.filters.isNumList },
+                })
+              }
             >
               <GlobalSvgSelector id="number-list" />
             </button>
           </li>
           <li className={s.answer__filterBarItem}>
-            <button 
-            className={s.answer__filterBtn} 
-            name="list-bullets"
-            onClick={() =>
-              dispatch({ type: "list", payload: {key: 'bullets', value : !state.filters.isNumList }})
+            <button
+              type="button"
+              className={s.answer__filterBtn}
+              name="list-bullets"
+              onClick={() =>
+                dispatch({
+                  type: "list",
+                  payload: { key: "bullets", value: !state.filters.isNumList },
+                })
               }
             >
               <GlobalSvgSelector id="list-bullets" />
@@ -75,21 +102,20 @@ const Answer = () => {
         </ul>
         <div className={s.answer__filterBar_rigth}>
           <button
+            type="button"
             className={s.answer__filterBtn}
             name="replay"
             onClick={() => dispatch({ type: "resetFilters" })}
           >
-            <GlobalSvgSelector
-              id="replay"
-            />
+            <GlobalSvgSelector id="replay" />
           </button>
         </div>
       </div>
-      <div className={s.answer__content}>
+      <div className={answerContentClasses.join(' ')}>
         <p className={s.answer__title}>Ответ на сообщение:</p>
         <div className={s.answer__textWrapper}>
-          <p className={s.answer__name}>Евгений</p>
-          <p className={s.answer__text}>Хочу программировать!</p>
+          <p className={s.answer__name}>{name}</p>
+          <p className={s.answer__text}>{text}</p>
         </div>
       </div>
     </div>

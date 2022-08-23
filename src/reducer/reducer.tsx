@@ -48,7 +48,7 @@ const reducer = (state: any, action: any) => {
         const arrOfChunks = state.text.split("\n");
         const numberChunks = arrOfChunks.map(
           (val: any, index: any) =>
-            `${isNumeric ? index + 1 : "\u2022"}. ${val}`
+            `${isNumeric ? index + 1 + "." : "\u2022"} ${val}`
         );
         const newNumberListString = numberChunks.join("\n");
         return {
@@ -58,7 +58,7 @@ const reducer = (state: any, action: any) => {
         };
       } else {
         const arrOfChunks = state.text.split("\n");
-        const numberChunks = arrOfChunks.map((val: any) => val.slice(3));
+        const numberChunks = arrOfChunks.map((val: any) => isNumeric ? val.slice(3) : val.slice(2));
         const newNumberListString = numberChunks.join("\n");
         return {
           ...state,
