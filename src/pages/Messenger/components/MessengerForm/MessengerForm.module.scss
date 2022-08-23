@@ -23,7 +23,7 @@
     border-radius: 8px;
     &::placeholder {
       font-size: 15px !important;
-      line-height: 120px !important;
+      line-height: 110px !important;
       font-weight: 400 !important;
       text-decoration: none ;
       align-items: center;
@@ -50,6 +50,7 @@
     position: absolute;
     bottom: 6px;
     right: 6px;
+    cursor: pointer;
   }
 
 }

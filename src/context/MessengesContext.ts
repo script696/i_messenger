@@ -8,7 +8,7 @@ interface IMessengesContext {
 const MessengesContext = createContext<{
   state?: any;
   dispatch?: any;
-  //React.Dispatch<any>
+  [key:string]: any;
 }>({});
 
 export default MessengesContext;

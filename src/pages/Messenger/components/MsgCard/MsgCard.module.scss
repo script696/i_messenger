@@ -1,4 +1,5 @@
 .msgCard {
+  position: relative;
   box-sizing: border-box;
   display: flex;
   justify-self: end;
@@ -59,18 +60,18 @@
     color: rgba(0, 0, 0, 0.29);
     text-align: right;
   }
-  &__items{
+  &__items {
     list-style: none;
     padding: 0;
     margin: 0;
   }
-  &__item_bold{
+  &__item_bold {
     font-weight: 700;
   }
-  &__item_italic{
+  &__item_italic {
     font-style: italic;
   }
-  &__item_underline{
+  &__item_underline {
     text-decoration: underline;
   }
   &__logoWrapper {
@@ -84,6 +85,27 @@
     height: 34px;
     background: url("../../../../assets/img/userMsgLogo.png") center / cover
       no-repeat;
+  }
+
+  &__answerBtn {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 6px;
+    right: 5px;
+    display: inline-block;
+    border: none;
+    background: none;
+    font-size: 10px;
+    line-height: 12px;
+    color: rgba(0, 0, 0, 0.4);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  &:hover &__answerBtn{
+    opacity: 1;
+    visibility: visible;
+    color: rgba(0, 0, 0, 0.9);
   }
 }
 
