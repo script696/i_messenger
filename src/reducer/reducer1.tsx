@@ -1,4 +1,6 @@
 import { Reducer } from "React";
+import {Actions} from '../types/types'
+
 
 interface IinitialData {
   msgUniqueId: string;
@@ -7,13 +9,6 @@ interface IinitialData {
   textMsg: string;
   timeSent: string;
   filters: any;
-}
-
-interface Actions {
-  type: string;
-  payload?: {
-    [key: string]: any;
-  };
 }
 
 const initialState1 = {
@@ -45,9 +40,9 @@ const reducer1: Reducer<IinitialData, Actions> = (state, action) => {
     return newString;
   };
 
-  const destructureStringList = (initialString: string) => {
+  const destructureStringList = (initialString: string, isNumeric: boolean) => {
     const arrOfChunks = initialString.split("\n");
-    const numberChunks = arrOfChunks.map((val: any) => val.slice(2));
+    const numberChunks = arrOfChunks.map((val: any) => isNumeric ? val.slice(3) : val.slice(2));
     const newString = numberChunks.join("\n");
     return newString;
   };
@@ -75,40 +70,80 @@ const reducer1: Reducer<IinitialData, Actions> = (state, action) => {
         ...state,
         filters: { ...state.filters, isUnderline: action.payload },
       };
-    case "list":
+   
+    case "list-num":
       
       if (!state.filters.isNumList) {
 
-        const isNumeric = action.payload?.key === "numeric";
-
-        const newString = structureStringList(state.textMsg, isNumeric);
+        const newString = structureStringList(state.textMsg, true);
         return {
           ...state,
           textMsg: newString,
           filters: { ...state.filters, isNumList: action.payload?.value },
         };
       } else {
-        const newString = destructureStringList(state.textMsg);
+        
+        const newString = destructureStringList(state.textMsg, true);
         return {
           ...state,
           textMsg: newString,
           filters: { ...state.filters, isNumList: action.payload?.value },
         };
       }
-    case "resetFilters":
-      if (state.filters.isNumList || state.filters.isBulletsList) {
-        const newString = destructureStringList(state.textMsg);
+    case "list-bullets":
+      
+      if (!state.filters.isBulletsList) {
+
+        const newString = structureStringList(state.textMsg, false);
         return {
           ...state,
-          text: newString,
-          filters: {
-            isBold: false,
-            isItalic: false,
-            isUnderline: false,
-            isNumList: false,
-            isBulletsList: false,
-          },
+          textMsg: newString,
+          filters: { ...state.filters, isBulletsList: action.payload?.value },
         };
+      } else {
+
+        const newString = destructureStringList(state.textMsg, false);
+        return {
+          ...state,
+          textMsg: newString,
+          filters: { ...state.filters, isBulletsList: action.payload?.value },
+        };
+      }
+    case "resetFilters":
+      if (state.filters.isNumList || state.filters.isBulletsList) {
+        if(state.filters.isNumList){
+          
+          console.log(state.textMsg);
+          const newString = destructureStringList(state.textMsg, true);
+          console.log(newString);
+
+          return {
+            ...state,
+            textMsg: newString,
+            filters: {
+              isBold: false,
+              isItalic: false,
+              isUnderline: false,
+              isNumList: false,
+              isBulletsList: false,
+            },
+          };
+        } 
+        if(state.filters.isBulletsList){
+          const newString = destructureStringList(state.textMsg, true);
+          return {
+            ...state,
+            textMsg: newString,
+            filters: {
+              isBold: false,
+              isItalic: false,
+              isUnderline: false,
+              isNumList: false,
+              isBulletsList: false,
+            },
+          };
+        } 
+
       }
       return {
         ...state,

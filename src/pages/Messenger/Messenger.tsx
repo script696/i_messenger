@@ -1,36 +1,15 @@
 import Answer from "./components/Answer/Answer";
 import MsgCard from "./components/MsgCard/MsgCard";
 import MessengerForm from "./components/MessengerForm/MessengerForm";
+import {ImsgFakeData, IuserFakeData} from '../../types/types'
 import s from "./Messenger.module.scss";
 
-interface Ifilters {
-  isBold: boolean;
-  isItalic: boolean;
-  isUnderline: boolean;
-  isNumList: boolean;
-  isBulletsList: boolean;
-}
-
-interface IfakeData {
-  msgUniqueId: string;
-  ownerId: string;
-  userName: string;
-  textMsg: string;
-  timeSent: string;
-  filters: Ifilters;
-}
-
-interface IuserFakeData {
-  userId: string;
-}
-
 interface IMessenger {
-  msgData : Array<IfakeData>;
+  msgData : Array<ImsgFakeData>;
   userData : IuserFakeData;
   onSendMsg : () => void;
   msgListRef : any;
 }
-
 
 const Messenger = ({
   msgData,
@@ -39,12 +18,11 @@ const Messenger = ({
   msgListRef,
 }: IMessenger) => {
 
-  
 
   return (
     <div className={s.messenger}>
       <ul className={s.messenger__list} ref={msgListRef}>
-        {msgData?.map((msg: IfakeData) => {
+        {msgData?.map((msg: ImsgFakeData) => {
           return (
             <li key={Math.random()} className={s.messenger__messege}>
               <MsgCard

@@ -1,18 +1,15 @@
 import GlobalSvgSelector from "../../../../assets/icons/GlobalSvgSelector";
-import React, { useContext } from "react";
+import React, { useContext,} from "react";
 import MessengesContext from "../../../../context/MessengesContext";
 import s from "./Answer.module.scss";
 
-
-
 const Answer = () => {
-  const { state1, dispatch1, state2, } = useContext(MessengesContext);
+  const { state1, dispatch1, state2 } = useContext(MessengesContext);
 
   const answerContentClasses = [
     s.answer__content,
     state2.isAnswerOpen ? s.answer__content_open : null,
   ];
-
 
   return (
     <div className={s.answer}>
@@ -68,30 +65,37 @@ const Answer = () => {
             <button
               type="button"
               className={s.answer__filterBtn}
-              name="list-num"
               onClick={() =>
                 dispatch1({
-                  type: "list",
+                  type: "list-num",
                   payload: { key: "numeric", value: !state1.filters.isNumList },
                 })
               }
             >
-              <GlobalSvgSelector id="number-list" />
+              <GlobalSvgSelector
+                id="number-list"
+                fill={`${state1.filters.isNumList ? "#000" : ""}`}
+              />
             </button>
           </li>
           <li className={s.answer__filterBarItem}>
             <button
               type="button"
               className={s.answer__filterBtn}
-              name="list-bullets"
               onClick={() =>
                 dispatch1({
-                  type: "list",
-                  payload: { key: "bullets", value: !state1.filters.isNumList },
+                  type: "list-bullets",
+                  payload: {
+                    key: "bullets",
+                    value: !state1.filters.isBulletsList,
+                  },
                 })
               }
             >
-              <GlobalSvgSelector id="list-bullets" />
+              <GlobalSvgSelector
+                id="list-bullets"
+                fill={`${state1.filters.isBulletsList ? "#000" : ""}`}
+              />
             </button>
           </li>
         </ul>

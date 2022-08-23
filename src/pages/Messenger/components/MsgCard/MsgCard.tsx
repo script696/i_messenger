@@ -1,27 +1,11 @@
 import React, { useContext } from "react";
 import MessengesContext from "../../../../context/MessengesContext";
 import s from "./MsgCard.module.scss";
-
-interface Ifilters {
-  isBold: boolean;
-  isItalic: boolean;
-  isUnderline: boolean;
-  isNumList: boolean;
-  isBulletsList: boolean;
-}
+import { ImsgFakeData, IuserFakeData } from "../../../../types/types";
 
 interface IMsgCard {
-  msgData: {
-    msgUniqueId: string;
-    ownerId: string;
-    userName: string;
-    textMsg: string;
-    timeSent: string;
-    filters: Ifilters;
-  };
-  userId: {
-    userId: string;
-  };
+  msgData: ImsgFakeData;
+  userId: IuserFakeData;
 }
 
 const MsgCard = ({

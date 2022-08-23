@@ -2,7 +2,12 @@ import React, { FormEvent, useContext, } from "react";
 import s from "./MessengerForm.module.scss";
 import MessengesContext from "../../../../context/MessengesContext";
 
-const MessengerForm = ({ onSubmit }: any) => {
+
+interface IMessengerForm {
+  onSubmit: (userName: string, textMsg: string)=> void
+}
+
+const MessengerForm = ({ onSubmit }: IMessengerForm) => {
 
   const {state1, dispatch1} = useContext(MessengesContext)
 

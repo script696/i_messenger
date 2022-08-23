@@ -1,26 +1,9 @@
-interface Ifilters {
-  isBold: boolean;
-  isItalic: boolean;
-  isUnderline: boolean;
-  isNumList: boolean;
-  isBulletsList: boolean;
-}
+import {
+  IuserFakeData,
+  ImsgFakeData,
+} from '../types/types'
 
-interface IfakeData {
-  msgUniqueId: string;
-  ownerId: string;
-  userName: string;
-  textMsg: string;
-  timeSent: string;
-  filters: Ifilters;
-}
-interface IuserFakeData {
-  userId: string;
-}
-
-
-
-const fakeMsgData: Array<IfakeData> = [
+const fakeMsgData: Array<ImsgFakeData> = [
   {
     msgUniqueId: `${Math.random()}`,
     ownerId: "000000",
@@ -83,7 +66,7 @@ const fakeUserData: IuserFakeData = {
   userId: "000000",
 };
 
-const getMsgData = (): Promise<Array<IfakeData>> => {
+const getMsgData = (): Promise<Array<ImsgFakeData>> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(fakeMsgData);
@@ -106,7 +89,7 @@ const sendMsg = ({
   filters: { isUnderline },
   filters: { isNumList },
   filters: { isBulletsList },
-}: any) : Promise<Array<IfakeData>> => {
+}: ImsgFakeData) : Promise<Array<ImsgFakeData>> => {
   console.log(userName, textMsg);
   
   return new Promise((resolve, reject) => {
