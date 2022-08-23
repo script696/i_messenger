@@ -1,27 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
+import MessengesContext from "../../../../context/MessengesContext";
 import s from "./MsgCard.module.scss";
+
+interface Ifilters {
+  isBold: boolean;
+  isItalic: boolean;
+  isUnderline: boolean;
+  isNumList: boolean;
+  isBulletsList: boolean;
+}
 
 interface IMsgCard {
   msgData: {
+    msgUniqueId: string;
     ownerId: string;
     userName: string;
     textMsg: string;
     timeSent: string;
+    filters: Ifilters;
   };
-  userId: [
-    {
-      _userId: string;
-    }
-  ];
+  userId: {
+    userId: string;
+  };
 }
 
 const MsgCard = ({
   msgData: { ownerId, userName, textMsg, timeSent, filters },
-  userId,
-  onAnswer,
-  onDataRequest,
-}: any) => {
-  const isUserMsg = ownerId === userId[0]._userId;
+  userId: { userId },
+}: IMsgCard) => {
+  const { dispatch2 } = useContext(MessengesContext);
+
+  const isUserMsg = ownerId === userId;
+
+  const msgCardClasses = [s.msgCard, !isUserMsg ? s.msgCard_style_bot : null];
 
   const texClasses = [
     s.msgCard__item,
@@ -33,9 +44,7 @@ const MsgCard = ({
   ];
 
   return (
-    <article
-      className={`${s.msgCard} ${!isUserMsg ? s.msgCard_style_bot : null} }`}
-    >
+    <article className={msgCardClasses.join(" ")}>
       <div className={s.msgCard__logoWrapper}>
         <div className={s.msgCard__logo}></div>
       </div>
@@ -48,8 +57,7 @@ const MsgCard = ({
         className={s.msgCard__answerBtn}
         type="button"
         onClick={() => {
-          onDataRequest(userName, textMsg)
-          onAnswer((prev: any) => !prev)
+          dispatch2({ type: "handleAnswer", payload: { userName, textMsg } });
         }}
       >
         Ответить

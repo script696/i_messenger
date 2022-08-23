@@ -1,23 +1,18 @@
-import React, { useContext } from "react";
 import GlobalSvgSelector from "../../../../assets/icons/GlobalSvgSelector";
+import React, { useContext } from "react";
 import MessengesContext from "../../../../context/MessengesContext";
 import s from "./Answer.module.scss";
 
-interface IisAnswerOpen {
-  isAnswerOpen: boolean;
-  answerMsgData: {
-    name: string;
-    text: string;
-  };
-}
 
-const Answer = ({ isAnswerOpen, answerMsgData: {name, text} }: IisAnswerOpen) => {
-  const { state, dispatch } = useContext(MessengesContext);
 
-const answerContentClasses = [
-  s.answer__content,
-  isAnswerOpen ? s.answer__content_open : null,
-]
+const Answer = () => {
+  const { state1, dispatch1, state2, } = useContext(MessengesContext);
+
+  const answerContentClasses = [
+    s.answer__content,
+    state2.isAnswerOpen ? s.answer__content_open : null,
+  ];
+
 
   return (
     <div className={s.answer}>
@@ -28,12 +23,12 @@ const answerContentClasses = [
               className={s.answer__filterBtn}
               name="bold"
               onClick={() =>
-                dispatch({ type: "bold", payload: !state.filters.isBold })
+                dispatch1({ type: "bold", payload: !state1.filters.isBold })
               }
             >
               <GlobalSvgSelector
                 id="bold"
-                fill={`${state.filters.isBold ? "#000" : ""}`}
+                fill={`${state1.filters.isBold ? "#000" : ""}`}
               />
             </button>
           </li>
@@ -42,12 +37,12 @@ const answerContentClasses = [
               className={s.answer__filterBtn}
               name="italic"
               onClick={() =>
-                dispatch({ type: "italic", payload: !state.filters.isItalic })
+                dispatch1({ type: "italic", payload: !state1.filters.isItalic })
               }
             >
               <GlobalSvgSelector
                 id="italic"
-                fill={`${state.filters.isItalic ? "#000" : ""}`}
+                fill={`${state1.filters.isItalic ? "#000" : ""}`}
               />
             </button>
           </li>
@@ -57,15 +52,15 @@ const answerContentClasses = [
               className={s.answer__filterBtn}
               name="underline"
               onClick={() =>
-                dispatch({
+                dispatch1({
                   type: "underline",
-                  payload: !state.filters.isUnderline,
+                  payload: !state1.filters.isUnderline,
                 })
               }
             >
               <GlobalSvgSelector
                 id="underline"
-                fill={`${state.filters.isUnderline ? "#000" : ""}`}
+                fill={`${state1.filters.isUnderline ? "#000" : ""}`}
               />
             </button>
           </li>
@@ -75,9 +70,9 @@ const answerContentClasses = [
               className={s.answer__filterBtn}
               name="list-num"
               onClick={() =>
-                dispatch({
+                dispatch1({
                   type: "list",
-                  payload: { key: "numeric", value: !state.filters.isNumList },
+                  payload: { key: "numeric", value: !state1.filters.isNumList },
                 })
               }
             >
@@ -90,9 +85,9 @@ const answerContentClasses = [
               className={s.answer__filterBtn}
               name="list-bullets"
               onClick={() =>
-                dispatch({
+                dispatch1({
                   type: "list",
-                  payload: { key: "bullets", value: !state.filters.isNumList },
+                  payload: { key: "bullets", value: !state1.filters.isNumList },
                 })
               }
             >
@@ -105,17 +100,19 @@ const answerContentClasses = [
             type="button"
             className={s.answer__filterBtn}
             name="replay"
-            onClick={() => dispatch({ type: "resetFilters" })}
+            onClick={() => {
+              dispatch1({ type: "resetFilters" });
+            }}
           >
             <GlobalSvgSelector id="replay" />
           </button>
         </div>
       </div>
-      <div className={answerContentClasses.join(' ')}>
+      <div className={answerContentClasses.join(" ")}>
         <p className={s.answer__title}>Ответ на сообщение:</p>
         <div className={s.answer__textWrapper}>
-          <p className={s.answer__name}>{name}</p>
-          <p className={s.answer__text}>{text}</p>
+          <p className={s.answer__name}>{state2.msgOwnerName}</p>
+          <p className={s.answer__text}>{state2.msgText}</p>
         </div>
       </div>
     </div>

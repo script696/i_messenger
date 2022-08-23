@@ -1,14 +1,8 @@
-import React, { createContext } from "react";
+import { createContext } from "react";
 
-interface IMessengesContext {
-  state: any;
-  dispatch: React.Dispatch<any>;
-}
 
-const MessengesContext = createContext<{
-  state?: any;
-  dispatch?: any;
-  [key:string]: any;
-}>({});
+const MessengesContext = createContext<any>(
+  undefined
+);
 
 export default MessengesContext;

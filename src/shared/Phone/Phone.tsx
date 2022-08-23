@@ -13,6 +13,7 @@ const Phone = ({ children }: IPhoneTypes) => {
 
       <h1 className={s.phone__title}>Робот-помощник</h1>
       <div className={s.phone__screen}>{children}</div>
+      <button type='button' className={s.phone__flscrnBtn}></button>
     </section>
   );
 };

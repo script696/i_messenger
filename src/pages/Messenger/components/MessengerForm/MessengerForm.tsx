@@ -1,53 +1,52 @@
-import React, { useContext, useEffect,} from "react";
+import React, { FormEvent, useContext, } from "react";
 import s from "./MessengerForm.module.scss";
 import MessengesContext from "../../../../context/MessengesContext";
 
 const MessengerForm = ({ onSubmit }: any) => {
 
-  const {state, dispatch} = useContext(MessengesContext)
+  const {state1, dispatch1} = useContext(MessengesContext)
 
   const textareaClasses = [
     s.msgForm__textArea,
-    state.filters.isBold ? s.msgForm__textArea_style_bold : null,
-    state.filters.isItalic ? s.msgForm__textArea_style_italic : null,
-    state.filters.isUnderline ? s.msgForm__textArea_style_underline : null,
+    state1.filters.isBold ? s.msgForm__textArea_style_bold : null,
+    state1.filters.isItalic ? s.msgForm__textArea_style_italic : null,
+    state1.filters.isUnderline ? s.msgForm__textArea_style_underline : null,
   ]
 
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    const { name, text } = state;
+    const { userName, textMsg } = state1;
 
-    onSubmit(name, text,);
+    onSubmit(userName, textMsg,);
   };
  
 
   return (
     <form className={s.msgForm} onSubmit={handleSubmit}>
       <input
-        value={state.name}
+        value={state1.userName}
         id="msgOwnerName"
         className={s.msgForm__input}
         type="text"
         placeholder="Имя"
         onChange={(e) =>
-          dispatch({
+          dispatch1({
             type: "fillName",
-            payload: { key: "name", value: e.target.value },
+            payload: { key: "userName", value: e.target.value },
           })
         }
       />
       <textarea
-        value={state.text}
+        value={state1.textMsg}
         id="msgText"
         className={textareaClasses.join(' ')}
-        // className={s.msgForm__textArea}
         placeholder="Сообщение"
         onChange={(e) =>
-          dispatch({
+          dispatch1({
             type: "fillText",
-            payload: { key: "text", value: e.target.value },
+            payload: { key: "textMsg", value: e.target.value },
           })
         }
       />
