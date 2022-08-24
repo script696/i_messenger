@@ -19,7 +19,7 @@ const App = () => {
   const [msgData, setMsgData] = useState<Array<ImsgFakeData>>([]);
   const [userData, setUsergData] = useState<IuserFakeData>({ userId: "000000" });
 
-  const msgListRef = useRef<HTMLInputElement | null>(null);
+  const msgListRef = useRef<any>(null);
 
   useEffect(() => {
     (async () => {
