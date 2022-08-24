@@ -2,24 +2,30 @@ import { getMsgData, getUserData, sendMsg } from "./utils/fakeApi";
 import { reducer1, initialState1 } from "./reducer/reducer1";
 import { reducer2, initialState2 } from "./reducer/reducer2";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { useEffect, useReducer, useRef, useState } from "react";
+import {
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 import Bell from "./pages/Bell/Bell";
 import Messenger from "./pages/Messenger/Messenger";
 import MessengesContext from "./context/MessengesContext";
 import Question from "./pages/Question/Question";
 import Phone from "./shared/Phone/Phone";
 import Operator from "./pages/Operator/Operator";
-import {ImsgFakeData, IuserFakeData} from './types/types'
+import { ImsgFakeData, IuserFakeData } from "./types/types";
 import "./styles/index.scss";
-
 
 const App = () => {
   const [state1, dispatch1] = useReducer(reducer1, initialState1);
   const [state2, dispatch2] = useReducer(reducer2, initialState2);
   const [msgData, setMsgData] = useState<Array<ImsgFakeData>>([]);
-  const [userData, setUsergData] = useState<IuserFakeData>({ userId: "000000" });
+  const [userData, setUsergData] = useState<IuserFakeData>({
+    userId: "000000",
+  });
 
-  const msgListRef = useRef<any>(null);
+  const msgListRef = useRef<any>();
 
   useEffect(() => {
     (async () => {
@@ -34,13 +40,15 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    msgListRef!.current!.scrollTop = msgListRef!.current!.scrollHeight;
+    if (msgListRef.current) {
+      msgListRef.current.scrollTop = msgListRef.current.scrollHeight;
+    }
   }, [msgData]);
 
   const onSendMsg = (): void => {
     const response = async () => {
       try {
-        const res: Array<ImsgFakeData>  = await sendMsg(state1);
+        const res: Array<ImsgFakeData> = await sendMsg(state1);
         setMsgData((prev): Array<ImsgFakeData> => [...prev, ...res]);
       } catch (e) {
         console.log(e);
@@ -55,7 +63,7 @@ const App = () => {
     };
     response();
   };
- 
+
   return (
     <MessengesContext.Provider
       value={{
