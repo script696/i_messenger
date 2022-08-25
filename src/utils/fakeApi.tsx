@@ -1,7 +1,4 @@
-import {
-  IuserFakeData,
-  ImsgFakeData,
-} from '../types/types'
+import { IuserFakeData, ImsgFakeData } from "../types/types";
 
 const fakeMsgData: Array<ImsgFakeData> = [
   {
@@ -89,9 +86,9 @@ const sendMsg = ({
   filters: { isUnderline },
   filters: { isNumList },
   filters: { isBulletsList },
-}: ImsgFakeData) : Promise<Array<ImsgFakeData>> => {
+}: ImsgFakeData): Promise<Array<ImsgFakeData>> => {
   console.log(userName, textMsg);
-  
+
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       fakeMsgData.push({
@@ -112,6 +109,5 @@ const sendMsg = ({
     }, 1000);
   });
 };
-
 
 export { getMsgData, getUserData, sendMsg };
