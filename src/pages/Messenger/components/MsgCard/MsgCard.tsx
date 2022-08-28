@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import MessengesContext from "../../../../context/MessengesContext";
 import s from "./MsgCard.module.scss";
 import { ImsgFakeData, IuserFakeData } from "../../../../types/types";
+import { handleAnswer } from "../../../../actions/actions";
 
 interface IMsgCard {
   msgData: ImsgFakeData;
@@ -41,8 +42,9 @@ const MsgCard = ({
         className={s.msgCard__answerBtn}
         type="button"
         onClick={() => {
-          dispatch2({ type: "handleAnswer", payload: { userName, textMsg } });
+          dispatch2(handleAnswer({ key : userName, value : textMsg }));
         }}
+       
       >
         Ответить
       </button>

@@ -1,4 +1,5 @@
 import { Reducer } from "React";
+import { HANDLE_ANSWER, RESET_ANSWER } from "../actions/actions";
 
 interface IinitialData {
   isAnswerOpen: boolean;
@@ -25,14 +26,14 @@ const reducer2: Reducer<IinitialData, Actions> = (
   action: Actions
 ) => {
   switch (action.type) {
-    case "handleAnswer":
+    case HANDLE_ANSWER:
       return {
         ...state,
         isAnswerOpen: true,
         msgOwnerName: action.payload?.userName,
         msgText: action.payload?.textMsg,
       };
-    case "reset":
+    case RESET_ANSWER:
       return {
         ...initialState2,
       };

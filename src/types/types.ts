@@ -24,3 +24,8 @@ export interface Actions {
     [key: string]: any;
   };
 }
+
+export interface IPayload<T> {
+  key: string;
+  value: T;
+}
