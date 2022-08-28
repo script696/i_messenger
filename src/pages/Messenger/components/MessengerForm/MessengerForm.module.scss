@@ -26,18 +26,18 @@
       font-size: 15px !important;
       line-height: 110px !important;
       font-weight: 400 !important;
-      text-decoration: none ;
+      text-decoration: none;
       align-items: center;
       text-align: center;
       color: rgba(0, 0, 0, 0.4);
     }
-    &_style_bold{
+    &_style_bold {
       font-weight: 700;
     }
-    &_style_italic{
+    &_style_italic {
       font-style: italic;
     }
-    &_style_underline{
+    &_style_underline {
       text-decoration: underline;
     }
   }
@@ -45,7 +45,8 @@
     border: 0;
     width: 40px;
     height: 40px;
-    background: #fff url('../../../../assets/icons/paperPlane.svg') center / 70% no-repeat;
+    background: #fff url("../../../../assets/icons/paperPlane.svg") center / 70%
+      no-repeat;
     box-shadow: 0px 2px 4px rgba(37, 142, 195, 0.3);
     border-radius: 7.5px;
     position: absolute;
@@ -53,7 +54,6 @@
     right: 6px;
     cursor: pointer;
   }
-
 }
 .testBtn {
   position: fixed;
@@ -62,4 +62,4 @@
   width: 100px;
   height: 100px;
   background-color: red;
-  }
+}

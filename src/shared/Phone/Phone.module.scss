@@ -55,11 +55,11 @@
       height: 11px;
       background: url("../../assets/icons/angle.svg");
     }
-    &::before{
+    &::before {
       top: 0;
       right: 0;
     }
-    &::after{
+    &::after {
       left: 0;
       bottom: 0;
       transform: rotate(180deg);

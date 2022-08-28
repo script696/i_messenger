@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    &_close{
+    &_close {
       display: none;
     }
   }
@@ -31,10 +31,8 @@
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
-        
   }
- 
-  
+
   &__link {
     display: flex;
     justify-content: center;
@@ -56,7 +54,8 @@
     height: 50px;
     transform: translate(-3px, -85%);
     border-radius: 10px;
-    background: #4089f6 url('../../assets/icons/chevron.svg') center / 11px 18px no-repeat;
+    background: #4089f6 url("../../assets/icons/chevron.svg") center / 11px 18px
+      no-repeat;
     display: flex;
     z-index: 1;
     cursor: pointer;
