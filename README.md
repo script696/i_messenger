@@ -1,46 +1,98 @@
-# Getting Started with Create React App
+<br/>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <h1 align="center">Проект I_messenger</h3>
 
-## Available Scripts
+  <p align="center">
+    Приложение 'Чат'
+    <br/>
+    <br/>
+   
+  </p>
 
-In the project directory, you can run:
+
+<table >
+  <tr >
+    <td width="33%">
+      <a align="center" href="https://script696.github.io/mesto/" target="_blank">Посмотреть этот проект</a>
+    </td>
+  </tr>
+</table>
+
+# О проекте
+<p >
+    <br/>
+</p>
+
+![Screen Shot](https://github.com/script696/i_messenger/blob/master/src/assets/img/mainPhoto.png)
+
+Проект i-messenger был выполнен как тестовое задание:
+
+ Реализовать приложение "Чат". Макет: https://www.figma.com/file/Tx587KCols3BJQ7umFuViM/Untitled?node-id=0%3A1 
+Описание:
+1. Чат, в котором есть сообщение от других пользователей (реализовать через заглушку), а также ваши. При наведении появляется возможность "ответить"; 
+2. Все свои сообщения добавляются в форму под чатом, которая содержит: 
+- кнопки форматирования текста и кнопку сброса всех примененных к тексту фильтров
+- инпута для ввода имени 
+- инпута для ввода сообщения, к которому могут быть применены фильтры 
+3. Сделал появление "ответить" только при наведении на сообщение; 
+4. Возможность ответа на чужое сообщение. 
+
+Условия:
+1.  Приложения должно быть реализовано на React, TypeScript (без использования сторонних библиотек); 
+2.  Надо перерисовать; 
+3.  Код оформить на GitHub с документацией по запуску. 
+
+
+## Использованные технологии
+
+- React (впервые применил хук useReducer)
+- TypeScript
+- SCSS 
+- WYSIWYG (собственный)
+- Figma
+- Методология БЭМ (Nested БЭМ)
+- Адаптивная верстка
+- Синтаксис ES6
+- ООП
+- REST API
+- Динамическая валидация форм 
+- Webpack
+- Проект подключен к серверу и размещен в интернете с использованием GitHub Pages
+
+## Установка
+
+## 1. Клонируйте репозиторий командой:
+
+### `git clone git@github.com:script696/i_messenger.git`
+
+## 2. Установите пакеты командой:
+
+### `npm i`
+
+## 3. Доступные скрипты:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Запуск приложения в режиме разработки.\
+Откройте [http://localhost:3000](http://localhost:3000) чтобы увидеть результат в браузере.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Страница обновится автоматически при внесении изменений.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Как это можно использовать
 
-### `npm run build`
+1. При нажатии на кнопку со стрелкой в левом верхнем углу откроется/закроется меню навигации
+2. При нажатии на кнопки меню будет осуществлен переход между страницами приложения (реальзована только одна страница - 'Чат')
+3. При наведении на сообщение появится кнопка ответить, при нажатии на которую текст сообщения появится в нижней части экрана
+4. Для форматирования текста, введенного в поле 'Сообщение' предусмотрен WYSIWYG редактор собственной разработки, с 6 кнопками.
+5. При нажатии кнопку с изображением бумажного самолета в нижней части экрана сообщение отправится в чат
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Что планируется улучшить
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Сделать бэк часть для хранения сообщений пользователей сприменением.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Авторы
 
-### `npm run eject`
+* **Никита Семенов** - *Web Developer* - [Никита Семенов](http://niksemenov.ru/) - **
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
