@@ -3,16 +3,16 @@ import { reducer1, initialState1 } from "./reducer/reducer1";
 import { reducer2, initialState2 } from "./reducer/reducer2";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { useEffect, useReducer, useRef, useState } from "react";
+import { ImsgFakeData, IuserFakeData } from "./types/types";
+import { resetAnswer, resetForm } from "./actions/actions";
 import Bell from "./pages/Bell/Bell";
 import Messenger from "./pages/Messenger/Messenger";
 import MessengesContext from "./context/MessengesContext";
 import Question from "./pages/Question/Question";
 import Phone from "./shared/Phone/Phone";
 import Operator from "./pages/Operator/Operator";
-import { ImsgFakeData, IuserFakeData } from "./types/types";
 import "./styles/index.scss";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
-import { resetAnswer, resetForm } from "./actions/actions";
 
 const App = () => {
   const [state1, dispatch1] = useReducer(reducer1, initialState1);

@@ -40,26 +40,30 @@ const initialState1 = {
 
 const DOT_UNICOD = "\u2022";
 
+
+const structureStringList = (initialString: string, isNumeric: boolean) => {
+  const arrOfChunks = initialString.split("\n");
+  const numberChunks = arrOfChunks.map(
+    (val: any, index: any) =>
+      `${isNumeric ? index + 1 + "." : DOT_UNICOD} ${val}`
+  );
+  const newString = numberChunks.join("\n");
+  return newString;
+};
+
+const destructureStringList = (initialString: string, isNumeric: boolean) => {
+  const arrOfChunks = initialString.split("\n");
+  const numberChunks = arrOfChunks.map((val: any) =>
+    isNumeric ? val.slice(3) : val.slice(2)
+  );
+  const newString = numberChunks.join("\n");
+  return newString;
+};
+
+
 /* eslint-disable import/no-anonymous-default-export */
 const reducer1: Reducer<IinitialData, Actions> = (state, action) => {
-  const structureStringList = (initialString: string, isNumeric: boolean) => {
-    const arrOfChunks = initialString.split("\n");
-    const numberChunks = arrOfChunks.map(
-      (val: any, index: any) =>
-        `${isNumeric ? index + 1 + "." : DOT_UNICOD} ${val}`
-    );
-    const newString = numberChunks.join("\n");
-    return newString;
-  };
 
-  const destructureStringList = (initialString: string, isNumeric: boolean) => {
-    const arrOfChunks = initialString.split("\n");
-    const numberChunks = arrOfChunks.map((val: any) =>
-      isNumeric ? val.slice(3) : val.slice(2)
-    );
-    const newString = numberChunks.join("\n");
-    return newString;
-  };
 
   switch (action.type) {
     case FILL_NAME:

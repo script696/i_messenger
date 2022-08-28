@@ -27,11 +27,12 @@ const reducer2: Reducer<IinitialData, Actions> = (
 ) => {
   switch (action.type) {
     case HANDLE_ANSWER:
+      
       return {
         ...state,
         isAnswerOpen: true,
-        msgOwnerName: action.payload?.userName,
-        msgText: action.payload?.textMsg,
+        msgOwnerName: action.payload?.key,
+        msgText: action.payload?.value,
       };
     case RESET_ANSWER:
       return {

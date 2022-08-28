@@ -42,6 +42,8 @@ const MsgCard = ({
         className={s.msgCard__answerBtn}
         type="button"
         onClick={() => {
+          console.log(userName, textMsg);
+          
           dispatch2(handleAnswer({ key : userName, value : textMsg }));
         }}
        
