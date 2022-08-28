@@ -1,7 +1,15 @@
 import GlobalSvgSelector from "../../../../assets/icons/GlobalSvgSelector";
-import React, { useContext,} from "react";
+import React, { useContext } from "react";
 import MessengesContext from "../../../../context/MessengesContext";
 import s from "./Answer.module.scss";
+import {
+  filterBold,
+  filterItalic,
+  filterListBullets,
+  filterListNum,
+  filterUnderline,
+  resetFilters,
+} from "../../../../actions/actions";
 
 const Answer = () => {
   const { state1, dispatch1, state2 } = useContext(MessengesContext);
@@ -19,8 +27,8 @@ const Answer = () => {
             <button
               className={s.answer__filterBtn}
               name="bold"
-              onClick={() =>
-                dispatch1({ type: "bold", payload: !state1.filters.isBold })
+              onClick={(): void =>
+                dispatch1(filterBold(!state1.filters.isBold))
               }
             >
               <GlobalSvgSelector
@@ -33,8 +41,8 @@ const Answer = () => {
             <button
               className={s.answer__filterBtn}
               name="italic"
-              onClick={() =>
-                dispatch1({ type: "italic", payload: !state1.filters.isItalic })
+              onClick={(): void =>
+                dispatch1(filterItalic(!state1.filters.isItalic))
               }
             >
               <GlobalSvgSelector
@@ -48,11 +56,8 @@ const Answer = () => {
               type="button"
               className={s.answer__filterBtn}
               name="underline"
-              onClick={() =>
-                dispatch1({
-                  type: "underline",
-                  payload: !state1.filters.isUnderline,
-                })
+              onClick={(): void =>
+                dispatch1(filterUnderline(!state1.filters.isUnderline))
               }
             >
               <GlobalSvgSelector
@@ -65,11 +70,13 @@ const Answer = () => {
             <button
               type="button"
               className={s.answer__filterBtn}
-              onClick={() =>
-                dispatch1({
-                  type: "list-num",
-                  payload: { key: "numeric", value: !state1.filters.isNumList },
-                })
+              onClick={(): void =>
+                dispatch1(
+                  filterListNum({
+                    key: "numeric",
+                    value: !state1.filters.isNumList,
+                  })
+                )
               }
             >
               <GlobalSvgSelector
@@ -82,14 +89,13 @@ const Answer = () => {
             <button
               type="button"
               className={s.answer__filterBtn}
-              onClick={() =>
-                dispatch1({
-                  type: "list-bullets",
-                  payload: {
+              onClick={(): void =>
+                dispatch1(
+                  filterListBullets({
                     key: "bullets",
                     value: !state1.filters.isBulletsList,
-                  },
-                })
+                  })
+                )
               }
             >
               <GlobalSvgSelector
@@ -105,7 +111,7 @@ const Answer = () => {
             className={s.answer__filterBtn}
             name="replay"
             onClick={() => {
-              dispatch1({ type: "resetFilters" });
+              dispatch1(resetFilters());
             }}
           >
             <GlobalSvgSelector id="replay" />

@@ -1,5 +1,17 @@
 import { Reducer } from "React";
-import {Actions} from '../types/types'
+import { Actions } from "../types/types";
+import {
+  FILL_NAME,
+  FILL_TEXT,
+  RESET_FORM,
+  FILTER_BOLD,
+  FILTER_ITALIC,
+  FILTER_UNDERLINE,
+  FILTER_LIST_NUM,
+  FILTER_LIST_BULLETS,
+  RESET_FILTERS,
+} from "../actions/actions";
+
 
 
 interface IinitialData {
@@ -16,7 +28,7 @@ const initialState1 = {
   ownerId: "",
   userName: "",
   textMsg: "",
-  timeSent: "15:55",
+  timeSent: "",
   filters: {
     isBold: false,
     isItalic: false,
@@ -42,39 +54,37 @@ const reducer1: Reducer<IinitialData, Actions> = (state, action) => {
 
   const destructureStringList = (initialString: string, isNumeric: boolean) => {
     const arrOfChunks = initialString.split("\n");
-    const numberChunks = arrOfChunks.map((val: any) => isNumeric ? val.slice(3) : val.slice(2));
+    const numberChunks = arrOfChunks.map((val: any) =>
+      isNumeric ? val.slice(3) : val.slice(2)
+    );
     const newString = numberChunks.join("\n");
     return newString;
   };
 
   switch (action.type) {
-    case "fillName":
-
+    case FILL_NAME:
       return { ...state, [action.payload?.key]: action.payload?.value };
-    case "fillText":
+    case FILL_TEXT:
       return { ...state, [action.payload?.key]: action.payload?.value };
-    case "reset":
+    case RESET_FORM:
       return initialState1;
-    case "bold":
+    case FILTER_BOLD:
       return {
         ...state,
         filters: { ...state.filters, isBold: action.payload },
       };
-    case "italic":
+    case FILTER_ITALIC:
       return {
         ...state,
         filters: { ...state.filters, isItalic: action.payload },
       };
-    case "underline":
+    case FILTER_UNDERLINE:
       return {
         ...state,
         filters: { ...state.filters, isUnderline: action.payload },
       };
-   
-    case "list-num":
-      
+    case FILTER_LIST_NUM:
       if (!state.filters.isNumList) {
-
         const newString = structureStringList(state.textMsg, true);
         return {
           ...state,
@@ -82,7 +92,6 @@ const reducer1: Reducer<IinitialData, Actions> = (state, action) => {
           filters: { ...state.filters, isNumList: action.payload?.value },
         };
       } else {
-        
         const newString = destructureStringList(state.textMsg, true);
         return {
           ...state,
@@ -90,10 +99,8 @@ const reducer1: Reducer<IinitialData, Actions> = (state, action) => {
           filters: { ...state.filters, isNumList: action.payload?.value },
         };
       }
-    case "list-bullets":
-      
+    case FILTER_LIST_BULLETS:
       if (!state.filters.isBulletsList) {
-
         const newString = structureStringList(state.textMsg, false);
         return {
           ...state,
@@ -101,7 +108,6 @@ const reducer1: Reducer<IinitialData, Actions> = (state, action) => {
           filters: { ...state.filters, isBulletsList: action.payload?.value },
         };
       } else {
-
         const newString = destructureStringList(state.textMsg, false);
         return {
           ...state,
@@ -109,10 +115,9 @@ const reducer1: Reducer<IinitialData, Actions> = (state, action) => {
           filters: { ...state.filters, isBulletsList: action.payload?.value },
         };
       }
-    case "resetFilters":
+    case RESET_FILTERS:
       if (state.filters.isNumList || state.filters.isBulletsList) {
-        if(state.filters.isNumList){
-          
+        if (state.filters.isNumList) {
           console.log(state.textMsg);
           const newString = destructureStringList(state.textMsg, true);
           console.log(newString);
@@ -128,8 +133,8 @@ const reducer1: Reducer<IinitialData, Actions> = (state, action) => {
               isBulletsList: false,
             },
           };
-        } 
-        if(state.filters.isBulletsList){
+        }
+        if (state.filters.isBulletsList) {
           const newString = destructureStringList(state.textMsg, true);
           return {
             ...state,
@@ -142,8 +147,7 @@ const reducer1: Reducer<IinitialData, Actions> = (state, action) => {
               isBulletsList: false,
             },
           };
-        } 
-
+        }
       }
       return {
         ...state,

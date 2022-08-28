@@ -2,12 +2,7 @@ import { getMsgData, getUserData, sendMsg } from "./utils/fakeApi";
 import { reducer1, initialState1 } from "./reducer/reducer1";
 import { reducer2, initialState2 } from "./reducer/reducer2";
 import { Redirect, Route, Switch } from "react-router-dom";
-import {
-  useEffect,
-  useReducer,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import Bell from "./pages/Bell/Bell";
 import Messenger from "./pages/Messenger/Messenger";
 import MessengesContext from "./context/MessengesContext";
@@ -16,6 +11,8 @@ import Phone from "./shared/Phone/Phone";
 import Operator from "./pages/Operator/Operator";
 import { ImsgFakeData, IuserFakeData } from "./types/types";
 import "./styles/index.scss";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import { resetAnswer, resetForm } from "./actions/actions";
 
 const App = () => {
   const [state1, dispatch1] = useReducer(reducer1, initialState1);
@@ -53,12 +50,8 @@ const App = () => {
       } catch (e) {
         console.log(e);
       } finally {
-        dispatch1({
-          type: "reset",
-        });
-        dispatch2({
-          type: "reset",
-        });
+        dispatch1(resetForm());
+        dispatch2(resetAnswer());
       }
     };
     response();
@@ -87,9 +80,7 @@ const App = () => {
             <Route path="/question" exact component={Question} />
             <Route path="/bell" exact component={Bell} />
             <Route path="/operator" exact component={Operator} />
-            <Route path="/" exact>
-              <Redirect to="/messenger" />
-            </Route>
+            <Route path="*" exact component={PageNotFound}/>
           </Switch>
         </Phone>
       </div>

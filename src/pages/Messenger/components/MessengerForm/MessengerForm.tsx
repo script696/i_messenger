@@ -1,32 +1,29 @@
-import React, { FormEvent, useContext, } from "react";
-import s from "./MessengerForm.module.scss";
+import { FormEvent, useContext } from "react";
 import MessengesContext from "../../../../context/MessengesContext";
-
+import { fillName, fillText } from "../../../../actions/actions";
+import s from "./MessengerForm.module.scss";
 
 interface IMessengerForm {
-  onSubmit: (userName: string, textMsg: string)=> void
+  onSubmit: (userName: string, textMsg: string) => void;
 }
 
 const MessengerForm = ({ onSubmit }: IMessengerForm) => {
-
-  const {state1, dispatch1} = useContext(MessengesContext)
+  const { state1, dispatch1 } = useContext(MessengesContext);
 
   const textareaClasses = [
     s.msgForm__textArea,
     state1.filters.isBold ? s.msgForm__textArea_style_bold : null,
     state1.filters.isItalic ? s.msgForm__textArea_style_italic : null,
     state1.filters.isUnderline ? s.msgForm__textArea_style_underline : null,
-  ]
-
+  ];
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     const { userName, textMsg } = state1;
 
-    onSubmit(userName, textMsg,);
+    onSubmit(userName, textMsg);
   };
- 
 
   return (
     <form className={s.msgForm} onSubmit={handleSubmit}>
@@ -37,22 +34,16 @@ const MessengerForm = ({ onSubmit }: IMessengerForm) => {
         type="text"
         placeholder="Имя"
         onChange={(e) =>
-          dispatch1({
-            type: "fillName",
-            payload: { key: "userName", value: e.target.value },
-          })
+          dispatch1(fillName({ key: "userName", value: e.target.value }))
         }
       />
       <textarea
         value={state1.textMsg}
         id="msgText"
-        className={textareaClasses.join(' ')}
+        className={textareaClasses.join(" ")}
         placeholder="Сообщение"
         onChange={(e) =>
-          dispatch1({
-            type: "fillText",
-            payload: { key: "textMsg", value: e.target.value },
-          })
+          dispatch1(fillText({ key: "textMsg", value: e.target.value }))
         }
       />
       <button className={s.msgForm__submitBtn} type="submit"></button>
