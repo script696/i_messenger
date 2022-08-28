@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/messenger/static/css/main.67e10075.css",
+    "main.js": "/messenger/static/js/main.8b2708c9.js",
+    "index.html": "/messenger/index.html",
+    "static/media/paperPlane.svg": "/messenger/static/media/paperPlane.cab5d1e1df5ba25852e0.svg",
+    "static/media/chevron.svg": "/messenger/static/media/chevron.96a6903a5e3c90fb1498.svg",
+    "static/media/angle.svg": "/messenger/static/media/angle.a563439cf13689589e63.svg",
+    "main.67e10075.css.map": "/messenger/static/css/main.67e10075.css.map",
+    "main.8b2708c9.js.map": "/messenger/static/js/main.8b2708c9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.67e10075.css",
+    "static/js/main.8b2708c9.js"
+  ]
+}
