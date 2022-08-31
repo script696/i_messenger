@@ -13,7 +13,7 @@
 <table >
   <tr >
     <td width="33%">
-      <a align="center" href="https://script696.github.io/mesto/" target="_blank">Посмотреть этот проект</a>
+      <a align="center" href="https://script696.github.io/messenger/" target="_blank">Посмотреть этот проект</a>
     </td>
   </tr>
 </table>
@@ -45,7 +45,7 @@
 
 ## Использованные технологии
 
-- React (впервые применил хук useReducer)
+- React 
 - TypeScript
 - SCSS 
 - WYSIWYG (собственный)
@@ -53,7 +53,6 @@
 - Методология БЭМ (Nested БЭМ)
 - Адаптивная верстка
 - Синтаксис ES6
-- ООП
 - REST API
 - Динамическая валидация форм 
 - Webpack
